@@ -9,11 +9,19 @@
 -- copier le fichier dans /tmp/...
 -- executer avec \i /tmp/... dans psql
 
-SELECT espece, nom FROM animal;
-INSERT INTO proprietaire
-VALUES
-(2,'DUHEM','Aude');
-INSERT INTO animal
-VALUES
-(3,'Chien','F','2017-04-01','Nova','Peureuse',2),
-(4,'Lapin', 'M', '2020-07-01', 'Jeannot', NULL, 2);
+--SELECT espece, nom FROM animal;
+--INSERT INTO proprietaire
+--VALUES
+--(2,'DUHEM','Aude');
+--INSERT INTO animal
+--VALUES
+--(3,'Chien','F','2017-04-01','Nova','Peureuse',2),
+--(4,'Lapin', 'M', '2020-07-01', 'Jeannot', NULL, 2);
+--INSERT INTO animal VALUES
+--(5, 'Chien','F','2013-10-10','Pepita','Bruyante',2),
+--(6, 'Chat','F','2012-08-23','Lila','Peureuse',1),
+--(7, 'CHeval','M','2008-03-14','Valentin','Rapide',2),
+--(8, 'Cheval','F','2008-03-14','Valentine','Lente',1),
+--(9, 'poisson',NULL,'2019-10-01','Nemo',NULL,2),
+--(10, 'oiseau','M','2018-12-23','Mozart','Bruyant',1),
+--(11, 'Chien','F','2015-02-01','Windows','Gentille',1);
