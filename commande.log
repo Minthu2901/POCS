@@ -279,4 +279,3 @@ SELECT nom FROM ville AS tordu WHERE UPPER(nom) LIKE 'B%' AND habitants > (
  Besançon
  Brest
  Bordeaux
-(4 rows)
