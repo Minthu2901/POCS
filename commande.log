@@ -1,11 +1,3 @@
-         nom          
-----------------------
- Boulogne-Billancourt
- Besançon
- Brest
- Bordeaux
-(4 rows)
-
 ********* QUERY **********
 SELECT nom,habitants FROM ville LIMIT 5;
 **************************
