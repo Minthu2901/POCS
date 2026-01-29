@@ -29,3 +29,4 @@ SELECT nom FROM ville WHERE dep = '13' AND habitants >(
 SELECT nom FROM ville AS tordu WHERE UPPER(nom) LIKE 'B%' AND habitants > (
     SELECT SUM(habitants) FROM ville WHERE dep = '78' AND densite < (
         SELECT AVG(densite) FROM ville)) ORDER BY habitants;
+ 
