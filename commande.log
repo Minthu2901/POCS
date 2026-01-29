@@ -1,0 +1,290 @@
+         nom          
+----------------------
+ Boulogne-Billancourt
+ Besançon
+ Brest
+ Bordeaux
+(4 rows)
+
+********* QUERY **********
+SELECT nom,habitants FROM ville LIMIT 5;
+**************************
+
+          nom          | habitants 
+-----------------------+-----------
+ Ozan                  |       618
+ Cormoranche-sur-Saône |      1058
+ Plagne                |       129
+ Tossiat               |      1406
+ Pouillat              |        88
+(5 rows)
+
+********* QUERY **********
+SELECT nom,habitants FROM ville WHERE dep = '78' ORDER BY nom LIMIT 5;
+**************************
+
+     nom     | habitants 
+-------------+-----------
+ Ablis       |      3287
+ Achères     |     19626
+ Adainville  |       759
+ Aigremont   |      1099
+ Allainville |       302
+(5 rows)
+
+********* QUERY **********
+SELECT nom,habitants FROM ville ORDER BY surface DESC LIMIT 5;
+**************************
+
+     nom     | habitants 
+-------------+-----------
+ Maripasoula |      8473
+ Régina      |       874
+ Camopi      |      1625
+ Mana        |      8952
+ Saint-Élie  |       555
+(5 rows)
+
+********* QUERY **********
+SELECT nom FROM ville ORDER BY habitants LIMIT 1;
+**************************
+
+          nom           
+------------------------
+ Cumières-le-Mort-Homme
+(1 row)
+
+********* QUERY **********
+SELECT nom FROM ville ORDER BY habitants DESC LIMIT 10;
+**************************
+
+     nom     
+-------------
+ Paris
+ Marseille
+ Lyon
+ Toulouse
+ Nice
+ Nantes
+ Strasbourg
+ Montpellier
+ Bordeaux
+ Lille
+(10 rows)
+
+********* QUERY **********
+SELECT * FROM ville WHERE nom = 'Rennes' LIMIT 5;
+**************************
+
+  id   | dep |  nom   |    codepostal     | insee | habitants | densite | surface | longitude | latitude | altitude 
+-------+-----+--------+-------------------+-------+-----------+---------+---------+-----------+----------+----------
+ 13468 | 35  | Rennes | 35000-35200-35700 | 35238 |    207178 |    4111 |   50.39 |  -1.68333 |  48.0833 | 74
+(1 row)
+
+********* QUERY **********
+SELECT nom,altitude FROM ville WHERE altitude LIKE '4___' ORDER BY altitude LIMIT 5;
+**************************
+
+            nom             | altitude 
+----------------------------+----------
+ Saint-Christophe-en-Oisans | 4008
+ Pelvoux                    | 4099
+ Houches                    | 4280
+ Chamonix-Mont-Blanc        | 4807
+ Saint-Gervais-les-Bains    | 4807
+(5 rows)
+
+********* QUERY **********
+SELECT nom,habitants FROM ville WHERE nom LIKE 'X%' LIMIT 5;
+**************************
+
+     nom      | habitants 
+--------------+-----------
+ Xambes       |       295
+ Xaintrailles |       413
+ Xirocourt    |       454
+ Xousse       |       121
+ Xammes       |       120
+(5 rows)
+
+********* QUERY **********
+SELECT nom,habitants FROM ville WHERE UPPER(nom) LIKE '%X%' LIMIT 5;
+**************************
+
+      nom      | habitants 
+---------------+-----------
+ Vaux-en-Bugey |      1169
+ Flaxieu       |        63
+ Pirajoux      |       360
+ Versailleux   |       332
+ Monthieux     |       599
+(5 rows)
+
+********* QUERY **********
+SELECT nom FROM ville WHERE dep = '78' AND habitants > '10000' AND habitants < '20000' LIMIT 5;
+**************************
+
+        nom        
+-------------------
+ Montesson
+ Le Vésinet
+ Maurepas
+ Croissy-sur-Seine
+ Bois-d'Arcy
+(5 rows)
+
+********* QUERY **********
+SELECT nom,dep FROM ville WHERE nom LIKE 'La Queue%' LIMIT 5;
+**************************
+
+          nom          | dep 
+-----------------------+-----
+ La Queue-les-Yvelines | 78
+ La Queue-en-Brie      | 94
+(2 rows)
+
+********* QUERY **********
+SELECT COUNT(nom) FROM ville LIMIT 5;
+**************************
+
+ count 
+-------
+ 36700
+(1 row)
+
+********* QUERY **********
+SELECT COUNT(DISTINCT nom) FROM ville LIMIT 5;
+**************************
+
+ count 
+-------
+ 34034
+(1 row)
+
+********* QUERY **********
+SELECT COUNT(DISTINCT dep) FROM ville LIMIT 5;
+**************************
+
+ count 
+-------
+   102
+(1 row)
+
+********* QUERY **********
+SELECT SUM(habitants) FROM ville LIMIT 5;
+**************************
+
+   sum    
+----------
+ 64886015
+(1 row)
+
+********* QUERY **********
+SELECT AVG(Densite) FROM ville LIMIT 5;
+**************************
+
+        avg         
+--------------------
+ 154.99604904632153
+(1 row)
+
+********* QUERY **********
+SELECT Densite FROM ville ORDER BY Densite LIMIT 1;
+**************************
+
+ densite 
+---------
+       0
+(1 row)
+
+********* QUERY **********
+SELECT nom,longitude FROM ville WHERE Longitude > -5 ORDER BY Longitude LIMIT 1;
+**************************
+
+        nom        | longitude 
+-------------------+-----------
+ Lampaul-Plouarzel |  -4.76667
+(1 row)
+
+********* QUERY **********
+SELECT nom,habitants FROM ville WHERE dep = '78' ORDER BY habitants OFFSET 5 LIMIT 5;
+**************************
+
+        nom         | habitants 
+--------------------+-----------
+ Flacourt           |       140
+ Favrieux           |       148
+ Flins-Neuve-Église |       164
+ La Hauteville      |       176
+ Ménerville         |       202
+(5 rows)
+
+********* QUERY **********
+SELECT COUNT(nom) FROM ville WHERE nom LIKE '%x_' LIMIT 5;
+**************************
+
+ count 
+-------
+    38
+(1 row)
+
+********* QUERY **********
+SELECT COUNT(nom) AS petites FROM ville WHERE dep = '78' AND habitants < 100 LIMIT 5;
+**************************
+
+ petites 
+---------
+       2
+(1 row)
+
+********* QUERY **********
+SELECT nom FROM ville WHERE habitants > ( 
+    SELECT habitants FROM ville WHERE nom = 'Lille') LIMIT 5;
+**************************
+
+     nom     
+-------------
+ Nice
+ Marseille
+ Toulouse
+ Bordeaux
+ Montpellier
+(5 rows)
+
+********* QUERY **********
+SELECT COUNT(nom) FROM ville WHERE densite > (
+    SELECT densite FROM ville WHERE nom =  'La Queue-les-Yvelines') LIMIT 5;
+**************************
+
+ count 
+-------
+  2293
+(1 row)
+
+********* QUERY **********
+SELECT nom FROM ville WHERE dep = '13' AND habitants >(
+    SELECT AVG(habitants) FROM ville WHERE dep = '13') ORDER BY nom LIMIT 5;
+**************************
+
+       nom       
+-----------------
+ Aix-en-Provence
+ Allauch
+ Arles
+ Aubagne
+ Gardanne
+(5 rows)
+
+********* QUERY **********
+SELECT nom FROM ville AS tordu WHERE UPPER(nom) LIKE 'B%' AND habitants > (
+    SELECT SUM(habitants) FROM ville WHERE dep = '78' AND densite < (
+        SELECT AVG(densite) FROM ville)) ORDER BY habitants LIMIT 5;
+**************************
+
+         nom          
+----------------------
+ Boulogne-Billancourt
+ Besançon
+ Brest
+ Bordeaux
+(4 rows)
